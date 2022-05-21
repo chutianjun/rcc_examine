@@ -37,8 +37,16 @@ gem 'jbuilder', '~> 2.5'
 gem 'grape'
 
 gem 'grape-entity'
+
 #引入mysql
 gem 'mysql2', '~> 0.5.4'
+
+
+#配置文件
+gem 'config', '~> 4.0'
+
+#跨域设置
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
 
 group :development, :test do
@@ -64,3 +72,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

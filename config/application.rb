@@ -14,5 +14,18 @@ module Examine
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # Auto-load API and its subdirectories
+    #
+    #
+    #
+    # 官方 说 rails 5 以上要加:
+    # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    #
+    # 获取所有的目录结构 方法
+    #  Dir[Rails.root.join('app', 'api') + '**/*'].reject { |f| File.file? f }
+
   end
 end
+

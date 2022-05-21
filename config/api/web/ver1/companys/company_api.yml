@@ -1,0 +1,13 @@
+#此文件是字段的相关配置文件,和 /app目录下的接口文件一一对应
+# list 就是 请求的 方法名称
+list:
+  page: '当前页'
+  per_page: '每页条数'
+  company_name: '公司名称'
+  followup_employee_id: '跟进人ID'
+detail:
+  id: '公司ID'
+add_contact:
+  name: '联系人姓名'
+  mobile: '联系人手机号'
+  company_id: '公司ID'
