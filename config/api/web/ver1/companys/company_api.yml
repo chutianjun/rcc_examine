@@ -1,13 +1,49 @@
 #此文件是字段的相关配置文件,和 /app目录下的接口文件一一对应
-# list 就是 请求的 方法名称
+# list 就是 请求的 方法名称,请求 公司列表相关字段
 list:
   page: '当前页'
   per_page: '每页条数'
   company_name: '公司名称'
   followup_employee_id: '跟进人ID'
+#  请求公司详情 字段
 detail:
   id: '公司ID'
+#  添加联系人相关 字段
 add_contact:
   name: '联系人姓名'
   mobile: '联系人手机号'
   company_id: '公司ID'
+#  添加跟进记录相关 字段
+add_follow: &follow_task_field
+  arrange_time: '安排时间'
+  follower_id: '跟进人'
+  contact_id: '联系人'
+  contact_information: '联系方式'
+  followup_phase: '跟进阶段'
+  followup_status: '跟进状态'
+  company_id: '公司ID'
+#修改跟进记录相关字段
+edit_follow:
+  <<: *follow_task_field
+  id: '跟进记录ID'
+#  删除跟进记录
+del_follow:
+  id: '跟进记录ID'
+#  删除公司
+del:
+  company_id: '公司ID'
+#添加公司操作
+add:
+  company_name: '公司名称'
+get_follow:
+  follow_id: '跟进任务Id'
+#  联系人列表
+contact_list:
+  company_id: '公司ID'
+#  获取跟进任务列表
+follow_task_list:
+  company_id: '公司ID'
+#批量完成跟进任务
+task_batch_done:
+  task_ids: '跟进任务ID集合'
+

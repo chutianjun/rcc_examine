@@ -7,6 +7,9 @@ module Web
       #挂载 公司 相关的接口
       mount Companys::CompanyAPI
 
+      #挂载用户 相关接口
+      mount User::UserAPI
+
     end
   end
 end

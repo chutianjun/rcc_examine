@@ -11,6 +11,6 @@ class CreateCompanies < ActiveRecord::Migration[5.1]
       t.timestamps null: true
     end
     #员工ID添加索引
-    add_index :companies, :followup_employee_id
+    add_index :companies, :followup_employee_id,comment: '跟进员工ID'
   end
 end

@@ -48,6 +48,11 @@ gem 'config', '~> 4.0'
 #跨域设置
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
+#jwt
+gem 'jwt', '~> 2.3'
+# bcrypt
+gem 'bcrypt', '3.1.18'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -9,7 +9,7 @@ module Web
         super
         #class_eval 来 打开 扩展类
         subclass.class_eval do
-          #before 前置方法
+
           before do
             @@curr_request_path = request.env['REQUEST_PATH']
             asterisk = "*" * 25
@@ -51,15 +51,16 @@ module Web
               error_mapping = error_mapping.to_hash
               error_params = []
               e.as_json.each do |value|
-                unless error_mapping[value[:params].join('').to_sym].blank?
-                  error_params << error_mapping[value[:params].join('').to_sym]
+                field = value[:params].join('').to_sym
+                message = value[:messages].join(' ')
+                unless error_mapping[field].blank?
+                  error_params << error_mapping[field] + ' ' + message
                 end
               end
 
               if error_params.size > 0
                 err_msg = '[' + error_params.join('],[') + '] 填写错误,请仔细检查'
               end
-
 
               message = error_return err_msg
               rack_response(format_message(message, e.backtrace), 201)
@@ -71,6 +72,7 @@ module Web
           end
         end
       end
+
     end
   end
 end

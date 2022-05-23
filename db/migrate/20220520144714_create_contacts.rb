@@ -5,7 +5,7 @@ class CreateContacts < ActiveRecord::Migration[5.1]
       t.string :name, limit: 30, comment: '姓名'
       t.boolean :sex, limit: 3, comment: '性别 1为男 2为女'
       t.string :department, limit: 30, comment: '部门'
-      t.boolean :importance, limit: 3, comment: '重要性 1.重要 2.普通'
+      t.boolean :importance, limit: 3, default: 0, comment: '重要性 1.重要 2.普通'
       t.string :mobile, comment: '手机号,可能有多个'
       t.string :phone, limit: 20, comment: '电话'
       t.string :email, limit: 30, comment: '邮箱'
@@ -15,6 +15,6 @@ class CreateContacts < ActiveRecord::Migration[5.1]
       t.timestamps null: true
     end
     #公司ID添加索引
-    add_index :contacts, :company_id
+    add_index :contacts, :company_id, comment: '公司ID'
   end
 end

@@ -4,6 +4,7 @@ class CreateEmployees < ActiveRecord::Migration[5.1]
     create_table :employees do |t|
       t.string :employee_name, limit: 30, comment: '员工姓名'
       t.integer :delete_time, default: 0, comment: '删除时间'
+      t.string :password_digest, comment: '密码加密后的字符串'
       t.timestamps null: true
     end
   end
