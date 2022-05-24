@@ -15,7 +15,10 @@ module UserHelper
       unless employee
         raise_json msg: '抱歉,该用户不存在或密码错误,请重试'
       end
-      { token: employee.token, employee_name:employee.employee_name }
+      employee_info={
+        employee_name:employee.employee_name
+      }
+      { token: employee.token, employee_info:employee_info }
     end
   end
 end
