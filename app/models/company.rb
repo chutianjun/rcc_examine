@@ -21,7 +21,7 @@ class Company < ApplicationRecord
     #搜索公司,此处 includes 避免 n+1
     company_search = self.select(:id, :company_name, :company_phone, :company_postcode, :company_address, :followup_employee_id).includes(:follow_up_employee)
     #公司名称搜索
-    company_search.where!('name like ? ', "%#{params[:company_name]}%") if params[:company_name].present?
+    company_search.where!('company_name like ? ', "%#{params[:company_name]}%") if params[:company_name].present?
     #跟进员工ID搜索
     company_search.where!(followup_employee_id: params[:followup_employee_id]) if params[:followup_employee_id] > 0
     #当前所在页数
