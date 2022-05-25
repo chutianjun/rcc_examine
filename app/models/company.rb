@@ -16,14 +16,14 @@ class Company < ApplicationRecord
 
   #获取公司分页列表数据
   def self.get_company_list(params)
-    #公司总数
-    company_total = self.count
     #搜索公司,此处 includes 避免 n+1
     company_search = self.select(:id, :company_name, :company_phone, :company_postcode, :company_address, :followup_employee_id).includes(:follow_up_employee)
     #公司名称搜索
     company_search.where!('company_name like ? ', "%#{params[:company_name]}%") if params[:company_name].present?
     #跟进员工ID搜索
     company_search.where!(followup_employee_id: params[:followup_employee_id]) if params[:followup_employee_id] > 0
+    #公司总数,排除掉 一些 关联,获取 总数
+    company_total=company_search.except(:includes).count('id')
     #当前所在页数
     params[:page] ||= 1
     #每页条数
