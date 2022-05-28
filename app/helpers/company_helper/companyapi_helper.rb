@@ -104,7 +104,7 @@ module CompanyHelper
     #添加公司
     def add_company(params)
       company_instance = ::Company.new
-      data_field = %w[company_name company_phone company_postcode company_address]
+      data_field = %w[company_name company_phone company_postcode company_address followup_employee_id]
       data_field.each do |item|
         # 动态赋值
         # 方式一
@@ -149,6 +149,29 @@ module CompanyHelper
         @add_company_result = { errors: company_instance.errors.messages.values, instance_data: { company_instance: company_instance } }
       end
     end
+
+    #修改公司
+    def edit_company(params)
+      edit_company_instance = ::Company.find_by_id(params[:company_id])
+      #公司不存在
+      unless edit_company_instance
+        raise_json msg:'抱歉,该公司不存在,请检查'
+      end
+
+      data_field = %w[company_name company_phone company_postcode company_address followup_employee_id]
+
+      data_field.each do |item|
+        edit_company_instance.send(item + '=', params[item])
+      end
+      #跟进人ID,如果没有传入跟进人id，就用当前用户的id
+      edit_company_instance.followup_employee_id = (params[:followup_employee_id].present? && params[:followup_employee_id].to_i > 0) ? params[:followup_employee_id] : @current_user.id
+      #开启事务
+      ActiveRecord::Base.transaction do
+        edit_company_instance.save
+        @edit_company_result = { errors: edit_company_instance.errors.messages.values, instance_data: { company_instance: edit_company_instance } }
+      end
+    end
+
 
     #删除公司
     def del_company(params)

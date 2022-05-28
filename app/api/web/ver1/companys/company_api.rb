@@ -55,6 +55,30 @@ module Web
           end
           #添加公司 end
 
+
+          #修改公司 start
+          desc '修改公司'
+          params do
+            :company_id
+          end
+
+          post :edit do
+            begin
+              edit_company(params)
+              #如果 model 层检测 到字段 的错误
+              if @edit_company_result[:errors].size >= 1
+                raise_json msg: @edit_company_result[:errors].join(',')
+              end
+              success_return @edit_company_result[:instance_data], '修改公司成功'
+            rescue Exception => e
+              #记录异常
+              logger_error e
+              error_return '抱歉,修改公司失败,请重试'
+            end
+          end
+
+          #修改公司 end
+
           # 删除公司 start
           desc '删除公司'
           params do
