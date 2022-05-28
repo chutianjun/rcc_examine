@@ -45,7 +45,7 @@ module CommonHelper
     #  日志记录 错误的内容
     def logger_error(e = '')
       # 如果当前不是生成环境,异常直接抛出,便于 查看 问题
-      unless Rails.env.equal? 'production'
+      unless Rails.env.eql? 'production'
         raise e
       end
       asterisk = "*" * 30
