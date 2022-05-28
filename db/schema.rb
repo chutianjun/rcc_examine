@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220520153700) do
+ActiveRecord::Schema.define(version: 20220528070423) do
 
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "company_name", limit: 180, comment: "公司名称"
     t.string "company_phone", limit: 20, comment: "公司电话"
-    t.string "company_postcode", limit: 10, comment: "公司邮编"
+    t.string "company_postcode", limit: 30, comment: "公司邮编"
     t.string "company_address", comment: "公司地址"
     t.integer "followup_employee_id", default: 0, comment: "当前跟进的员工ID ,关联到 employees 表 "
     t.integer "delete_time", default: 0, comment: "删除时间"
