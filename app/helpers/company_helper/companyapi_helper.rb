@@ -4,7 +4,6 @@ module CompanyHelper
     def get_company_list(params)
       #写SQL查询出没有跟进任务的公司。(写在公司model类中)
 
-
       company_model_data = ::Company.get_company_list(params)
       database_data = company_model_data[:database_data]
       company_data = database_data.map do |item|
@@ -22,7 +21,6 @@ module CompanyHelper
       company_data = company_info.as_json
       #当前跟进人员数据
       company_data[:follow_up_employee] = company_info.try!(:follow_up_employee)
-
       # 此处是 示范 一个接口返回全部 相关 数据
       #
       #公司联系人数据
@@ -118,8 +116,8 @@ module CompanyHelper
         # 方式三
         # company_instance.try(item+'=',params[item])
       end
-      #跟进人ID
-      company_instance.followup_employee_id = @current_user.id
+      #跟进人ID,如果没有传入跟进人id，就用当前用户的id
+      company_instance.followup_employee_id = (params[:followup_employee_id].present? && params[:followup_employee_id].to_i > 0) ? params[:followup_employee_id] : @current_user.id
 
       # create 数据的方式
       #

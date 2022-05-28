@@ -23,7 +23,7 @@ class Company < ApplicationRecord
     #跟进员工ID搜索
     company_search.where!(followup_employee_id: params[:followup_employee_id]) if params[:followup_employee_id] > 0
     #公司总数,排除掉 一些 关联,获取 总数
-    company_total=company_search.except(:includes).count('id')
+    company_total = company_search.except(:includes).count('id')
     #当前所在页数
     params[:page] ||= 1
     #每页条数
@@ -31,19 +31,18 @@ class Company < ApplicationRecord
     offset_current = params[:page] - 1
     offset_current = (offset_current < 0) ? 0 : offset_current
     offset_size = offset_current * params[:per_page]
-    database_data = company_search.limit!(params[:per_page]).offset!(offset_size)
+    database_data = company_search.limit!(params[:per_page]).offset!(offset_size).order!(id: :desc)
     { company_total: company_total, database_data: database_data }
   end
 
-
   #写SQL查询出没有跟进任务的公司。(写在公司model类中)
   def self.no_follow_up_tasks
-#     no_follow_companys=self.find_by_sql("SELECT a.id,a.company_name,a.company_phone,a.company_postcode,a.company_address FROM `companies` a left join follow_records  b on a.id=b.company_id
-# WHERE ISNULL(b.id)")
+    #     no_follow_companys=self.find_by_sql("SELECT a.id,a.company_name,a.company_phone,a.company_postcode,a.company_address FROM `companies` a left join follow_records  b on a.id=b.company_id
+    # WHERE ISNULL(b.id)")
     #
-    no_follow_companys=self.select('companies.id,companies.company_name,companies.company_phone,companies.company_postcode,companies.company_address')
-                           .joins(" left join follow_records   on companies.id=follow_records.company_id")
-                           .where("ISNULL(follow_records.id)")
+    no_follow_companys = self.select('companies.id,companies.company_name,companies.company_phone,companies.company_postcode,companies.company_address')
+                             .joins(" left join follow_records   on companies.id=follow_records.company_id")
+                             .where("ISNULL(follow_records.id)")
 
   end
 end
