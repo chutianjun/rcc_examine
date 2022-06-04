@@ -53,6 +53,9 @@ gem 'jwt', '~> 2.3'
 # bcrypt
 gem 'bcrypt', '3.1.18'
 
+#oracle相关
+gem 'activerecord-oracle_enhanced-adapter'
+gem 'ruby-oci8'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
