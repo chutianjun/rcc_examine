@@ -33,7 +33,7 @@ module Web
               success_return login_user(params)
             rescue Exception => e
               logger_error e
-              error_return '抱歉,添加用户失败,请重试'
+              error_return '抱歉,用户登录失败,请重试'
             ensure
             end
           end
