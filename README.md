@@ -24,8 +24,9 @@ Things you may want to cover:
 
 * 运行流程介绍
 
-* 1.第一步,将config/database_mysql.example.yml 复制一份 命名为 为 database.yml,这里数据库 使用的是mysql, 文件 database.yml 已经忽略掉 了
+* 1.第一步,将config/database.yml.example 复制一份 命名为 为 database.yml,这里数据库 使用的是mysql, 文件 database.yml 已经忽略掉 了
 拷贝数据库示例文件,修改host,username,password 等 即可
+* 将config/secrets.yml.example,复制一份，命名为config/secrets.yml即可
 
 * 2.第二步,
 
