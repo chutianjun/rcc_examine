@@ -11,6 +11,10 @@ module CompanyHelper
         new_item[:follow_up_employee] = item.follow_up_employee
         new_item
       end
+
+      #调用异步任务
+      AddLotsOfUsersJob.perform_later
+
       { company_data: company_data, total: company_model_data[:company_total] }
     end
 

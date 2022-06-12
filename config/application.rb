@@ -26,6 +26,8 @@ module Examine
     # 获取所有的目录结构 方法
     #  Dir[Rails.root.join('app', 'api') + '**/*'].reject { |f| File.file? f }
 
+    #
+    config.active_job.queue_adapter = :sidekiq
   end
 end
 
