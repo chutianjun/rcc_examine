@@ -7,6 +7,13 @@ module Web
 
         namespace :user do
 
+          desc '检测登录状态'
+          params do
+          end
+          post 'check_login' do
+            success_return '', '已登录'
+          end
+
           desc '添加用户'
           params do
             #requires 必填,allow_blank  false 不能为空
